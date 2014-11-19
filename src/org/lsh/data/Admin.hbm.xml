@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="org.lsh.data.Admin" table="admin" schema="" catalog="attendance">
+        <id name="adminId">
+            <column name="admin_id" sql-type="varchar" length="50" not-null="true"/>
+        </id>
+        <property name="colPswd">
+            <column name="col_pswd" sql-type="varchar" length="64" not-null="true"/>
+        </property>
+        <property name="colName">
+            <column name="col_name" sql-type="varchar" length="45" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

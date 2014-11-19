@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/attendance</property>
+        <property name="connection.username">lsh</property>
+        <property name="connection.password">lsh</property>
+
+        <!-- SQL dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="current_session_context_class">thread</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+        <mapping resource="org/lsh/data/Admin.hbm.xml"/>
+        <mapping resource="org/lsh/data/Student.hbm.xml"/>
+        <mapping resource="org/lsh/data/Teacher.hbm.xml"/>
+        <mapping class="org.lsh.data.Admin"/>
+        <mapping class="org.lsh.data.Student"/>
+        <mapping class="org.lsh.data.Teacher"/>
+
+    </session-factory>
+
+</hibernate-configuration>

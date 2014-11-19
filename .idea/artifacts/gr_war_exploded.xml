@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="gr:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/gr_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="gr/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="gr" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="hibernate" />
+          <element id="library" level="project" name="mysql-jdbc" />
+          <element id="library" level="project" name="gson-2.3" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
