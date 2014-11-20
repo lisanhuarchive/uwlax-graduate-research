@@ -6,12 +6,16 @@ import org.hibernate.SessionFactory;
 import org.lsh.data.Admin;
 import org.lsh.data.Student;
 import org.lsh.data.Teacher;
+import org.lsh.data.Term;
 import org.lsh.data.control.DataCenter;
 
 import static org.lsh.helper.Constants.*;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -175,5 +179,31 @@ public class Functions {
 		s.getTransaction().commit();
 		s.close();
 		return true;
+	}
+
+	/**
+	 * Get the current term
+	 *
+	 * @return the last term it could be ignore it may overlaps the end date
+	 */
+	public static Term getCurrentTerm() {
+		List<Term> terms = DataCenter.query("from Term t where t.activated = ?", true);
+		Term term = terms.get(0);
+		Calendar now = Calendar.getInstance();
+		for (Term t : terms) {
+			try {
+				Calendar start = Calendar.getInstance();
+				SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+				start.setTime(sdf.parse(t.getTermStart()));
+				if (now.after(start)) {
+					term = t;
+				} else {
+					break;
+				}
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		return term;
 	}
 }

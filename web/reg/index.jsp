@@ -64,6 +64,7 @@
 			<li class="active"><a href="#stus">Students</a></li>
 			<li><a href="#teas">Teachers</a></li>
 			<li><a href="#terms">Terms</a></li>
+			<li><a href="#courses">Courses</a></li>
 			<li class="pull-right">
 				<form action="<%=root%>">
 					<a href="<%=root%>/logout">Logout</a>
@@ -160,6 +161,11 @@
 			<div id="terms" class="tab-pane">
 				<jsp:include page="terms.jsp" flush="true"/>
 			</div>
+
+			<div id="courses" class="tab-pane">
+				<jsp:include page="courses.jsp" flush="true"/>
+			</div>
+
 		</div>
 	</div>
 </div>

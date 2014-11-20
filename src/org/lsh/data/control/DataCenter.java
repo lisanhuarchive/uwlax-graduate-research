@@ -68,7 +68,7 @@ public class DataCenter {
 	public static void save(Object obj) {
 		Session s = getSf().openSession();
 		Transaction tx = s.beginTransaction();
-		s.update(obj);
+		s.save(obj);
 		tx.commit();
 		s.close();
 	}
