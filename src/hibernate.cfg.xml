@@ -27,6 +27,8 @@
         <mapping class="org.lsh.data.Admin"/>
         <mapping class="org.lsh.data.Student"/>
         <mapping class="org.lsh.data.Teacher"/>
+        <mapping resource="org/lsh/data/Term.hbm.xml"/>
+        <mapping class="org.lsh.data.Term"/>
 
     </session-factory>
 

@@ -53,7 +53,8 @@
 			margin-top: 2em;
 		}
 	</style>
-
+	<script src="<%=root%>/refs/jquery-2.1.1.js"></script>
+	<script src="<%=root%>/refs/bootstrap.js"></script>
 </head>
 <body>
 
@@ -62,6 +63,7 @@
 		<ul class="nav nav-pills" id="bar">
 			<li class="active"><a href="#stus">Students</a></li>
 			<li><a href="#teas">Teachers</a></li>
+			<li><a href="#terms">Terms</a></li>
 			<li class="pull-right">
 				<form action="<%=root%>">
 					<a href="<%=root%>/logout">Logout</a>
@@ -154,14 +156,17 @@
 					</form>
 				</div>
 			</div>
+
+			<div id="terms" class="tab-pane">
+				<jsp:include page="terms.jsp" flush="true"/>
+			</div>
 		</div>
 	</div>
 </div>
 
 
 </body>
-<script src="<%=root%>/refs/jquery-2.1.1.js"></script>
-<script src="<%=root%>/refs/bootstrap.js"></script>
+
 <script type="text/javascript">
 	$('#bar > li > a').click(function (e) {
 		$(this).tab('show');
