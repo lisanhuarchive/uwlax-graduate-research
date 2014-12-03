@@ -8,17 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ page import="static org.lsh.helper.Constants.*" %>
-<%@ page import="org.lsh.data.control.User" %>
+<%@ page import="org.lsh.helper.Functions" %>
 
 <%
-    User usr = (User) session.getAttribute("usr");
-    if (null == usr) {
-        session.setAttribute("error", "Please login first.");
-        response.sendRedirect(root);
-        return;
-    } else if (usr.getType() != STU) {
-        session.setAttribute("error", "You can not access this page");
-        response.sendRedirect(root);
+    if (!Functions.checkUser(request, response, STU)) {
         return;
     }
 %>
@@ -38,6 +31,8 @@
     <script src="<%=root%>/refs/bootstrap.js"></script>
 </head>
 <body>
+<div><a href="<%=root%>/logout">Logout</a></div>
+
 <div>View Courses</div>
 
 <jsp:include page="view_courses.jsp" flush="true"></jsp:include>

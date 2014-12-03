@@ -3,7 +3,6 @@
 <%@ page import="org.lsh.data.Teacher" %>
 <%@ page import="static org.lsh.helper.Constants.*" %>
 <%@ page import="org.lsh.data.Term" %>
-<%@ page import="java.io.File" %>
 <%--
   Created by IntelliJ IDEA.
   User: lsh
@@ -92,10 +91,6 @@
                 <td>${term.termName}</td>
             </tr>
         </table>
-        <%
-            String relativelyPath = getServletConfig().getServletContext().getRealPath("/");
-            out.println(relativelyPath);
-        %>
     </div>
 </div>
 </body>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="org.lsh.data.Grade" table="grade" schema="" catalog="attendance">
+        <id name="gid">
+            <column name="gid" sql-type="int" not-null="true"/>
+        </id>
+        <property name="scid">
+            <column name="scid" sql-type="int" not-null="true"/>
+        </property>
+        <property name="itemId">
+            <column name="item_id" sql-type="int" not-null="true"/>
+        </property>
+        <property name="grade">
+            <column name="grade" sql-type="int" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

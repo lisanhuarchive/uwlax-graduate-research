@@ -11,12 +11,10 @@
 <%@ page import="static org.lsh.helper.Constants.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="org.lsh.data.control.DataCenter" %>
-<%@ page import="org.lsh.data.Course" %>
-<%@ page import="org.lsh.data.Teacher" %>
 <%@ page import="java.util.HashMap" %>
-<%@ page import="org.lsh.data.Student" %>
-<%@ page import="org.lsh.data.StudentCourseView" %>
 <%@ page import="org.lsh.data.control.User" %>
+<%@ page import="org.lsh.data.*" %>
+<%@ page import="org.lsh.helper.Functions" %>
 <%
     List<Course> courses = DataCenter.query("from Course c where c.activate = ?", true);
     HashMap<String, Teacher> teachers = new HashMap<>();
@@ -80,7 +78,13 @@
 
 <%!
     private boolean isSelected(Student stu, Course course) {
-        List<StudentCourseView> records = DataCenter.query("from StudentCourseView scv where scv.studentId = ? and scv.cid = ?", stu.getStudentId(), course.getCid());
-        return !records.isEmpty();
+        StudentCourse sc = Functions.getSCByStudentAndCourse(stu, course);
+        if (sc == null) {
+            return false;
+        }
+        if (sc.getIsValid() == 0) {
+            return false;
+        }
+        return true;
     }
 %>

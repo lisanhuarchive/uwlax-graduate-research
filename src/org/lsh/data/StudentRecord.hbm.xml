@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="org.lsh.data.StudentRecord" table="student_record" schema="" catalog="attendance">
+        <id name="srid">
+            <column name="srid" sql-type="int" not-null="true"/>
+        </id>
+        <property name="scid">
+            <column name="scid" sql-type="int" not-null="true"/>
+        </property>
+        <property name="rid">
+            <column name="rid" sql-type="int" not-null="true"/>
+        </property>
+        <property name="recordTime">
+            <column name="record_time" sql-type="varchar" length="45" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

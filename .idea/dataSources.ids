@@ -31,7 +31,36 @@
       <primary-key name="PRIMARY" columns="cid"/>
       <foreign-key name="course_ibfk_1" columns="teacher" ref-table="teacher" ref-schema="" ref-catalog="attendance" ref-columns="teacher_id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="course_ibfk_2" columns="term" ref-table="term" ref-schema="" ref-catalog="attendance" ref-columns="term_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="cid" table="grade_item" schema="" catalog="attendance" columns="cid"/>
+      <exported-key name="record_ibfk_1" table="record" schema="" catalog="attendance" columns="cid"/>
       <exported-key name="student_course_ibfk_2" table="student_course" schema="" catalog="attendance" columns="course_id"/>
+    </table>
+    <table name="grade" schema="" catalog="attendance" type="TABLE">
+      <column name="gid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="scid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="grade" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="gid"/>
+      <foreign-key name="grade_ibfk_1" columns="scid" ref-table="student_course" ref-schema="" ref-catalog="attendance" ref-columns="scid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="grade_ibfk_2" columns="item_id" ref-table="grade_item" ref-schema="" ref-catalog="attendance" ref-columns="item_id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="grade_item" schema="" catalog="attendance" type="TABLE">
+      <column name="item_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="item_name" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="total" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="is_valid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MQ=="/>
+      <primary-key name="PRIMARY" columns="item_id"/>
+      <foreign-key name="cid" columns="cid" ref-table="course" ref-schema="" ref-catalog="attendance" ref-columns="cid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="grade_ibfk_2" table="grade" schema="" catalog="attendance" columns="item_id"/>
+      <index name="cid_idx" unique="false" columns="cid"/>
+    </table>
+    <table name="record" schema="" catalog="attendance" type="TABLE">
+      <column name="rid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="cid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="is_open" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="rid"/>
+      <foreign-key name="record_ibfk_1" columns="cid" ref-table="course" ref-schema="" ref-catalog="attendance" ref-columns="cid" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
     <table name="student" schema="" catalog="attendance" type="TABLE">
       <column name="student_id" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
@@ -44,9 +73,12 @@
       <column name="scid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="student_id" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
       <column name="course_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="is_valid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MQ=="/>
       <primary-key name="PRIMARY" columns="scid"/>
       <foreign-key name="student_course_ibfk_1" columns="student_id" ref-table="student" ref-schema="" ref-catalog="attendance" ref-columns="student_id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="student_course_ibfk_2" columns="course_id" ref-table="course" ref-schema="" ref-catalog="attendance" ref-columns="cid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="grade_ibfk_1" table="grade" schema="" catalog="attendance" columns="scid"/>
+      <exported-key name="student_record_ibfk_1" table="student_record" schema="" catalog="attendance" columns="scid"/>
       <index name="student_id" unique="true" columns="course_id"/>
     </table>
     <table name="student_course_view" schema="" catalog="attendance" type="VIEW">
@@ -64,6 +96,15 @@
       <column name="weekdays" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
       <column name="term" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="activate" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+    </table>
+    <table name="student_record" schema="" catalog="attendance" type="TABLE">
+      <column name="srid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="scid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="rid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="record_time" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="srid"/>
+      <foreign-key name="student_record_ibfk_1" columns="scid" ref-table="student_course" ref-schema="" ref-catalog="attendance" ref-columns="scid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="rid_scid_UNIQUE" unique="true" columns="rid,scid"/>
     </table>
     <table name="teacher" schema="" catalog="attendance" type="TABLE">
       <column name="teacher_id" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>

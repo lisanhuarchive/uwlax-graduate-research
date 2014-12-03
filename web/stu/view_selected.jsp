@@ -3,6 +3,7 @@
 <%@ page import="org.lsh.data.Course" %>
 <%@ page import="org.lsh.data.Student" %>
 <%@ page import="org.lsh.data.control.User" %>
+<%@ page import="static org.lsh.helper.Constants.*" %>
 <%--
   Created by IntelliJ IDEA.
   User: lsh
@@ -15,7 +16,7 @@
 <%
     User usr = (User) session.getAttribute("usr");
     Student student = (Student) usr.getUser();
-    pageContext.setAttribute("courses", Functions.getCoursesByStudent(student));
+    pageContext.setAttribute("courses", Functions.getValidCoursesByStudent(student));
 %>
 <div class="col-lg-12">
     <table class="table table-bordered table-striped">
@@ -52,8 +53,11 @@
                         ${teacher}
                 </td>
                 <td>
-                    <a class="btn" href="">View Grades</a>
-                    <a class="btn" href="">Drop Course</a>
+                    <a class="btn" target="_blank"
+                       href="view_course_grades.jsp?cid=<%=c.getCid()%>&sid=<%=student.getStudentId()%>">View Grades</a>
+                    <a class="btn" target="_blank"
+                       href="<%=root%>/stu/drop_course?cid=<%=c.getCid()%>&sid=<%=student.getStudentId()%>">Drop
+                        Course</a>
                 </td>
             </tr>
         </c:forEach>

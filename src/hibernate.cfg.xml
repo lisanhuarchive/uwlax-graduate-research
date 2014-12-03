@@ -35,6 +35,14 @@
         <mapping class="org.lsh.data.StudentCourseView"/>
         <mapping resource="org/lsh/data/StudentCourse.hbm.xml"/>
         <mapping class="org.lsh.data.StudentCourse"/>
+        <mapping class="org.lsh.data.Record"/>
+        <mapping resource="org/lsh/data/Record.hbm.xml"/>
+        <mapping resource="org/lsh/data/StudentRecord.hbm.xml"/>
+        <mapping class="org.lsh.data.StudentRecord"/>
+        <mapping resource="org/lsh/data/Grade.hbm.xml"/>
+        <mapping class="org.lsh.data.Grade"/>
+        <mapping resource="org/lsh/data/GradeItem.hbm.xml"/>
+        <mapping class="org.lsh.data.GradeItem"/>
 
     </session-factory>
 
