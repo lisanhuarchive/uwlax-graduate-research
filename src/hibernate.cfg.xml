@@ -10,8 +10,8 @@
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/attendance</property>
-        <property name="connection.username">lsh</property>
         <property name="connection.password">lsh</property>
+        <property name="connection.username">lsh</property>
 
         <!-- SQL dialect -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
@@ -31,6 +31,10 @@
         <mapping class="org.lsh.data.Term"/>
         <mapping class="org.lsh.data.Course"/>
         <mapping resource="org/lsh/data/Course.hbm.xml"/>
+        <mapping resource="org/lsh/data/StudentCourseView.hbm.xml"/>
+        <mapping class="org.lsh.data.StudentCourseView"/>
+        <mapping resource="org/lsh/data/StudentCourse.hbm.xml"/>
+        <mapping class="org.lsh.data.StudentCourse"/>
 
     </session-factory>
 

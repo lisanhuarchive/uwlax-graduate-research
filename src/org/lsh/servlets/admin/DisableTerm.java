@@ -1,4 +1,4 @@
-package org.lsh.servlets;
+package org.lsh.servlets.admin;
 
 import org.lsh.data.Term;
 import org.lsh.data.control.DataCenter;

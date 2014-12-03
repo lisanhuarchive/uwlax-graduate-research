@@ -11,6 +11,7 @@
           <element id="library" level="project" name="hibernate" />
           <element id="library" level="project" name="mysql-jdbc" />
           <element id="library" level="project" name="gson-2.3" />
+          <element id="library" level="project" name="jstl" />
         </element>
       </element>
     </root>

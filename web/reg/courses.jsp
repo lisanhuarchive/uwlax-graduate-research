@@ -42,7 +42,7 @@
 				<td>
 					<form action="<%=root%>/reg/update_course.jsp" method="get">
 						<input name="id" type="hidden" value="${course.cid}"/>
-						<button class="btn" type="submit">Update</button>
+						<button class="btn" type="submit" formtarget="_blank">Update</button>
 					</form>
 				</td>
 				<form action="<%=root%>/reg/disable_course" method="post">
@@ -58,6 +58,6 @@
 </div>
 <div class="col-lg-12">
 	<div>
-		<a href="<%=root%>/reg/add_course.jsp" class="btn">Add Course</a>
+		<a href="<%=root%>/reg/add_course.jsp" class="btn" target="_blank">Add Course</a>
 	</div>
 </div>

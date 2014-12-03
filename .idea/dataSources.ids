@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source source="LOCAL" name="hibernate.cfg.xml" uuid="085d3a1c-a0b8-47ba-892f-614341aba22d">
-    <database-info product="MySQL" version="5.6.21" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+  <data-source name="hibernate.cfg.xml" uuid="085d3a1c-a0b8-47ba-892f-614341aba22d">
+    <database-info product="MySQL" version="5.6.22" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
@@ -31,12 +31,39 @@
       <primary-key name="PRIMARY" columns="cid"/>
       <foreign-key name="course_ibfk_1" columns="teacher" ref-table="teacher" ref-schema="" ref-catalog="attendance" ref-columns="teacher_id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="course_ibfk_2" columns="term" ref-table="term" ref-schema="" ref-catalog="attendance" ref-columns="term_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="student_course_ibfk_2" table="student_course" schema="" catalog="attendance" columns="course_id"/>
     </table>
     <table name="student" schema="" catalog="attendance" type="TABLE">
       <column name="student_id" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
       <column name="student_name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
       <column name="student_password" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="student_id"/>
+      <exported-key name="student_course_ibfk_1" table="student_course" schema="" catalog="attendance" columns="student_id"/>
+    </table>
+    <table name="student_course" schema="" catalog="attendance" type="TABLE">
+      <column name="scid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="student_id" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="course_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="scid"/>
+      <foreign-key name="student_course_ibfk_1" columns="student_id" ref-table="student" ref-schema="" ref-catalog="attendance" ref-columns="student_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="student_course_ibfk_2" columns="course_id" ref-table="course" ref-schema="" ref-catalog="attendance" ref-columns="cid" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="student_id" unique="true" columns="course_id"/>
+    </table>
+    <table name="student_course_view" schema="" catalog="attendance" type="VIEW">
+      <column name="scid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="student_id" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="student_name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="student_password" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="cid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="c_no" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="section" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="c_title" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="teacher" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="c_time" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="capacity" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="weekdays" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="term" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="activate" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
     </table>
     <table name="teacher" schema="" catalog="attendance" type="TABLE">
       <column name="teacher_id" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>

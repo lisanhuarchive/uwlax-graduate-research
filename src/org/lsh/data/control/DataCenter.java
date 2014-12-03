@@ -73,6 +73,15 @@ public class DataCenter {
 		s.close();
 	}
 
+	public static int SQLExecute(String sql, Object... params) {
+		Session s = getSf().openSession();
+		Query q = s.createSQLQuery(sql);
+		for (int i = 0; i < params.length; ++i) {
+			q.setParameter(i, params[i]);
+		}
+		return q.executeUpdate();
+	}
+
 	public static Object select(String hql, Object... params) {
 		List result;
 		Session s = getSf().openSession();
