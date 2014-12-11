@@ -71,7 +71,7 @@
                     total += sum;
                 }
 
-                List<Grade> grades = Functions.getGradesByStudentAndCourse(student, course);
+                List<Grade> grades = Functions.getValidGradesByStudentAndCourse(student, course);
                 sum = 0;
                 String earned = "";
                 for (Grade grade : grades) {
@@ -83,7 +83,7 @@
                     earned += sum;
                 }
 
-                StudentCourse sc = Functions.getSCByStudentAndCourse(student, course);
+                StudentCourse sc = Functions.getValidSCByStudentAndCourse(student, course);
                 pageContext.setAttribute("sc", sc);
             %>
             <td><%=earned%>/<%=total%>

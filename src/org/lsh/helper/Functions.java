@@ -61,6 +61,23 @@ public class Functions {
         return result;
     }
 
+    public static List<Grade> getValidGradesByStudentAndCourse(Student student, Course course) {
+        StudentCourse sc = getValidSCByStudentAndCourse(student, course);
+
+        if (sc == null) {
+            return new ArrayList<>();
+        }
+
+        List<Grade> result = DataCenter.query("from Grade g where g.scid = ?", sc.getScid());
+        for (Grade g : result) {
+            GradeItem gi = getGradeItemById(g.getItemId());
+            if (gi.getIsValid() == 0) {
+                result.remove(g);
+            }
+        }
+        return result;
+    }
+
     public static GradeItem getGradeItemById(Integer id) {
         List<GradeItem> result = DataCenter.query("from GradeItem gi where gi.itemId = ?", id);
         if (result.size() == 0) {
@@ -76,6 +93,16 @@ public class Functions {
 
     public static StudentCourse getSCByStudentAndCourse(Student student, Course course) {
         List<StudentCourse> scs = DataCenter.query("from StudentCourse sc where sc.studentId = ? and sc.courseId = ?", student.getStudentId(), course.getCid());
+
+        if (scs.size() == 0) {
+            return null;
+        }
+
+        return scs.get(0);
+    }
+
+    public static StudentCourse getValidSCByStudentAndCourse(Student student, Course course) {
+        List<StudentCourse> scs = DataCenter.query("from StudentCourse sc where sc.studentId = ? and sc.courseId = ? and sc.isValid = 1", student.getStudentId(), course.getCid());
 
         if (scs.size() == 0) {
             return null;
@@ -152,7 +179,7 @@ public class Functions {
     }
 
     public static int getStudentNumberByCourse(Course course) {
-        List<StudentCourse> scs = DataCenter.query("from StudentCourse sc where sc.courseId = ?", course.getCid());
+        List<StudentCourse> scs = DataCenter.query("from StudentCourse sc where sc.courseId = ? and sc.isValid = ?", course.getCid(), 1);
         return scs.size();
     }
 
