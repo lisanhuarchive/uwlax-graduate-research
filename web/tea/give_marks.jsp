@@ -63,7 +63,7 @@
                         pageContext.setAttribute("grade", grade);
                     %>
                     <td>
-                        <input type="text" name="grade" required value="${grade}"/>
+                        <input type="text" name="grade" required value="${grade}"/> / ${item.total}
                     </td>
                     <td>
                         <input name="itemid" type="hidden" value="${item.itemId}"/>
