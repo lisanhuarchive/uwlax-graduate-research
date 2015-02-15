@@ -67,7 +67,8 @@
                     <%
                     } else {
                     %>
-                    <a href="close_record.jsp?rid=<%=record.getRid()%>" target="_blank">Close the record</a>
+                    <div><a href="view_record.jsp?rid=<%=record.getRid()%>" target="_blank">View the record</a></div>
+                    <div><a href="close_record.jsp?rid=<%=record.getRid()%>" target="_blank">Close the record</a></div>
                     <%
                         }
                     %>

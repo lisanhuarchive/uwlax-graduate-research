@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="static org.lsh.helper.Constants.*" %>
 <%@ page import="org.lsh.data.*" %>
+<%@ page import="static org.lsh.helper.Functions.getSCByStudentAndCourse" %>
 <%--
   Created by IntelliJ IDEA.
   User: lsh
@@ -56,7 +57,7 @@
                     List<StudentRecord> studentRecords = Functions.getStudentRecordsByStudentAndCourse(student, course);
                     List<Record> records = Functions.getRecordsByCourse(course);
                 %>
-                <%=studentRecords.size()%>/<%=records.size()%>
+                <a href="show_detailed_records.jsp?scid=<%=getSCByStudentAndCourse(student, course).getScid()%>"><%=studentRecords.size()%>/<%=records.size()%></a>
             </td>
             <%
                 List<GradeItem> items = Functions.getValidGradeItemsByCourse(course);

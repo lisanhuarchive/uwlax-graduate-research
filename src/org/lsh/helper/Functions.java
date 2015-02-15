@@ -124,6 +124,10 @@ public class Functions {
         return DataCenter.query("from StudentRecord sr where sr.scid = ?", sc.getScid());
     }
 
+    public static List<StudentRecord> getStudentRecordsBySCId(Integer scid) {
+        return DataCenter.query("from StudentRecord sr where sr.scid = ?", scid);
+    }
+
     public static Record getRecordByRid(Integer rid) {
         List<Record> records = DataCenter.query("from Record where rid = ?", rid);
         if (records.size() == 0) {

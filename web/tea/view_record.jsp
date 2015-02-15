@@ -1,37 +1,30 @@
 <%@ page import="org.lsh.data.Record" %>
 <%@ page import="org.lsh.helper.Functions" %>
-<%@ page import="org.lsh.data.Course" %>
-<%@ page import="org.lsh.data.control.DataCenter" %>
 <%@ page import="static org.lsh.helper.Constants.*" %>
+<%@ page import="org.lsh.data.control.DataCenter" %>
 <%--
   Created by IntelliJ IDEA.
   User: lsh
-  Date: 14/12/3
-  Time: 上午5:52
+  Date: 15/2/2
+  Time: 上午3:08
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    String cid = request.getParameter("cid");
-    if (cid == null) {
+    String rid = request.getParameter("rid");
+    if (rid == null) {
         out.println("Parameter lost");
         return;
     }
-    Course course = Functions.getCourseById(Integer.parseInt(cid));
 
-    if (course == null) {
-        out.println("No such course");
+    Record record = Functions.getRecordByRid(Integer.parseInt(rid));
+
+    if (record == null) {
+        out.println("Record does not exist.");
         return;
     }
 
-    Record record = Functions.getOpenRecordByCourse(course);
-    if (record == null) {
-        record = new Record();
-        record.setCid(course.getCid());
-        record.setIsOpen(1);
-        DataCenter.save(record);
-    }
-    record = Functions.getOpenRecordByCourse(course);
+
 %>
 <html>
 <head>
