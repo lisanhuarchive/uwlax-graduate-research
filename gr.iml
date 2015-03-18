@@ -31,11 +31,12 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.0.14" level="application_server_libraries" />
     <orderEntry type="library" name="hibernate" level="project" />
     <orderEntry type="library" name="mysql-jdbc" level="project" />
     <orderEntry type="library" name="gson-2.3" level="project" />
     <orderEntry type="library" name="jstl" level="project" />
+    <orderEntry type="library" name="commons-codec-1.10" level="project" />
+    <orderEntry type="library" name="joda-time-2.7" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.0.20" level="application_server_libraries" />
   </component>
 </module>
-

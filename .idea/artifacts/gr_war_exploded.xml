@@ -12,6 +12,8 @@
           <element id="library" level="project" name="mysql-jdbc" />
           <element id="library" level="project" name="gson-2.3" />
           <element id="library" level="project" name="jstl" />
+          <element id="library" level="project" name="commons-codec-1.10" />
+          <element id="library" level="project" name="joda-time-2.7" />
         </element>
       </element>
     </root>

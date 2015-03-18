@@ -2,6 +2,7 @@ import com.google.gson.Gson;
 import org.lsh.data.*;
 import org.lsh.data.control.DataCenter;
 import org.lsh.helper.Functions;
+import org.lsh.service.AttendCourseService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -73,9 +74,16 @@ public class AttendCourse extends HttpServlet {
         }
 
         if (record.getIsOpen() == 1) {
-            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
             String time = sdf.format(Calendar.getInstance().getTime());
             Course course = Functions.getCourseById(record.getCid());
+            if (!AttendCourseService.isInValidTime(course)) {
+                Message msg = new Message();
+                msg.result = "fail";
+                msg.reason = "Not in course time";
+                out.println(gson.toJson(msg));
+                return;
+            }
             StudentCourse sc = Functions.getSCByStudentAndCourse(student, course);
             StudentRecord sr = new StudentRecord();
             sr.setRecordTime(time);

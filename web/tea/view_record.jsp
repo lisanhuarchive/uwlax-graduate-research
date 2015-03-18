@@ -2,6 +2,8 @@
 <%@ page import="org.lsh.helper.Functions" %>
 <%@ page import="static org.lsh.helper.Constants.*" %>
 <%@ page import="org.lsh.data.control.DataCenter" %>
+<%@ page import="org.lsh.helper.Constants" %>
+<%@ page import="org.lsh.helper.cipher.AESUtils" %>
 <%--
   Created by IntelliJ IDEA.
   User: lsh
@@ -36,7 +38,7 @@ the rid is:
 <%=record.getRid()%>
 <br/>
 <a href="<%=root%>/stu/sign_up?rid=<%=record.getRid()%>&sid=957427426">Sign Up for 957427426</a>
-<img src="https://api.qrserver.com/v1/create-qr-code/?&data=<%=record.getRid()%>"
+<img src="https://api.qrserver.com/v1/create-qr-code/?&data=<%=AESUtils.encrypt(record.getRid() + "", Constants.KEY)%>"
      alt="qr code"/>
 </body>
 </html>

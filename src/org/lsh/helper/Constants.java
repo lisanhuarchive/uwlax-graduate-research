@@ -13,4 +13,5 @@ public class Constants {
 	public static final int THU = 0x04;
 	public static final int FRI = 0x02;
 	public static final int SAT = 0x01;
+    public static final String KEY = "tvDTcmUhYg";
 }

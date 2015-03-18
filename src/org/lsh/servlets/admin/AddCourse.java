@@ -45,6 +45,6 @@ public class AddCourse extends HttpServlet {
 		course.setTerm(term.getTermId());
 		course.setActivate(true);
 
-		DataCenter.save(course);
+		DataCenter.saveOrUpdate(course);
 	}
 }
